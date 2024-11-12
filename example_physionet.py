@@ -11,11 +11,12 @@ def load_raw_data(df, sampling_rate, path):
     data = np.array([signal for signal, meta in data])
     return data
 
-path = 'path/to/ptbxl/'
+path = './'
 sampling_rate=100
+nrows=10 # number of patients to load, set to None to load all patients
 
 # load and convert annotation data
-Y = pd.read_csv(path+'ptbxl_database.csv', index_col='ecg_id')
+Y = pd.read_csv(path+'ptbxl_database.csv', index_col='ecg_id', nrows=nrows)
 Y.scp_codes = Y.scp_codes.apply(lambda x: ast.literal_eval(x))
 
 # Load raw signal data
